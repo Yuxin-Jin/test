@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>我的广播剧音乐站</title>
   <!-- css -->
+   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <style>
     body {
   margin: 0;
@@ -453,10 +454,74 @@ body::after {
         0 0 6px rgba(0,255,255,0.4),
         0 0 12px rgba(255,0,255,0.2);
     }
-    
-  
-    
     /* 夜间模式 */
+    /* ✅ iOS 防止擅自缩放字体 */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ✅ 小屏手机：整体更大、更好点按 */
+@media (max-width: 430px) {
+  .page {
+    /* 你要左右约 30px：手机上保留 22~30 更舒服 */
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-top: 28px;
+    padding-bottom: calc(190px + env(safe-area-inset-bottom));
+  }
+
+  .daily-quote {
+    font-size: 24px;
+    margin-bottom: 22px;
+  }
+
+  #time {
+    font-size: 64px;   /* 时间更醒目 */
+    line-height: 1.05;
+  }
+
+  #weather {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .music-player,
+  .song-search,
+  .lyrics-search,
+  .lyrics-card {
+    padding: 18px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+
+  .music-player button {
+    font-size: 16px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin: 8px 6px;
+  }
+
+  .song-search input,
+  .lyrics-search input {
+    height: 46px;
+    font-size: 16px;
+    border-radius: 14px;
+  }
+
+  #lyrics-content {
+    font-size: 24px;
+    line-height: 1.85;
+  }
+
+  .lyrics-card {
+    height: 360px; /* 手机上歌词区域更大一点 */
+  }
+
+  /* 底部波形稍微矮一点，别压内容 */
+  .music-visualizer {
+    height: 95px;
+  }
+}
   </style>
 </head>
 
