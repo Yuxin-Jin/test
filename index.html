@@ -6,46 +6,30 @@
   <!-- css -->
   <style>
     body {
-      margin: 0;
-      font-family: "Microsoft YaHei", sans-serif;
-      background: linear-gradient(
-        270deg,
-        #ffdde1, /* 浅粉 */
-        #ee9ca7, /* 粉橙 */
-        #a1c4fd, /* 浅蓝 */
-        #c2e9fb, /* 淡蓝白 */
-        #fbc2eb, /* 粉紫 */
-        #e0c3fc  /* 淡紫 */
-      );
-      background-size: 1200% 1200%;
-      animation: gradientBG 30s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; /* 页面全屏居中 */
-      overflow: hidden;
-      position: relative;
-      z-index: 0;
-    }
-    /* 🌟 白色半透明罩子 */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.6); /* 白色 + 透明度 0.5 */
-      pointer-events: none; /* 不影响点击 */
-      z-index: 0;
-    }
-    /* 定义 */
-    @keyframes gradientBG {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @font-face {
+  margin: 0;
+  
+  font-family: "Microsoft YaHei", sans-serif;
+  background: linear-gradient(
+    270deg,
+    #ffdde1,
+    #ee9ca7,
+    #a1c4fd,
+    #c2e9fb,
+    #fbc2eb,
+    #e0c3fc
+  );
+  background-size: 1200% 1200%;
+  animation: gradientBG 30s ease infinite;
+  min-height: 100vh;
+}
+
+@keyframes gradientBG {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@font-face {
         font-family: "Yimengwuma"; /* 取一个你喜欢的名字，后面用这个 */
         src: url("Aa以梦为马.ttf") format("truetype");
         font-weight: normal;
@@ -57,151 +41,17 @@
       font-weight: normal;
       font-style: normal;
     }
-    /* 背景 */
 
-
-    /* 播放器固定左上角 */
-    .music-player {
-      top: 30px;
-      left: 30px;
-      width: 100%;
-      padding: 8px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      z-index: 1000; /* 确保在漂浮元素之上 */
-    }
-    .player-wrapper {
-      position: fixed;
-      top: 30px;
-      left: 30px;
-      width: 320px; /* 和播放器差不多宽 */
-      z-index: 1000;
-    }
-    /* 播放器 */
-
-
-    /* 搜歌 */
-    .song-search {
-      margin-top: 10px;   /* 离播放器很近 */
-      background: #ffffff;
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      padding: 10px;
-    }
-    .song-search input {
-      width: 95%;
-      height: 30px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      padding: 4px 8px;
-      font-size: 14px;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    .song-search ul {
-      list-style: none;
-      margin: 6px 0 0;
-      padding: 0;
-      max-height: 180px;
-      overflow-y: auto;
-      display: none;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    .song-search li {
-      padding: 6px 8px;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background 0.2s;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    .song-search li:hover {
-      background: #f0f0f0;
-    }
-    /* 搜歌 */
-
-
-    /* 贪吃蛇小游戏区域 */
-    .snake-game {
-      position: fixed;
-      top: 460px;   /* 播放器下面 */
-      left: 30px;   /* 和播放器左对齐 */
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      padding: 10px;
-      text-align: center;
-      z-index: 1000;
-    }
-    #snakeCanvas {
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      background: #fafafa;
-    }
-    /* 分数 + 按钮的容器 */
-    .snake-info {
-      display: flex;
-      justify-content: space-between; /* 左右分布 */
-      align-items: center;            /* 垂直居中 */
-      margin-top: 6px;
-      width: 100%;                   /* 跟 canvas 宽度一致 */
-      font-family: "Yimengwuma", sans-serif;
-    }
-    #snake-score {
-      font-size: 16px;
-      color: #444;
-    }
-    #restart-btn {
-      padding: 0;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      display: none;  /* 默认隐藏 */
-    }
-    #restart-btn img {
-      width: 28px;   /* 按钮大小 */
-      height: 28px;
-      border-radius: 50%;  /* 圆形效果 */
-      transition: transform 0.2s ease;
-    }
-    #restart-btn img:hover {
-      transform: scale(1.15) rotate(15deg); /* 悬停时放大+旋转 */
-    }
-    /* 贪吃蛇小游戏 */
-
-
-    /* 轮播图外层容器（白框效果） */
-    .slideshow-wrapper {
-      background: #fff;
-      padding: 12px; /* 白边宽度 */
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      z-index: 10;
-    }
-    /* 轮播图容器 */
-    .slideshow {
-      width: 550px;
-      height: 500px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      position: relative;
-    }
-    .slideshow img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .slideshow img.active {
-      opacity: 1;
-    }
-    /* 轮播图 */
-
-
-    /* ✨ 小装饰元素（星星/圆点） */
+/* 半透明白色柔光罩 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.5);
+  pointer-events: none;
+  z-index: -1;
+}
+/* ✨ 小装饰元素（星星/圆点） */
     .star {
       position: absolute;
       width: 8px;
@@ -218,341 +68,7 @@
     }
     /* 小装饰 */
 
-
-    /* 📌 每日一句 */
-    .daily-quote {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background: transparent; /* 去掉背景色 */
-        padding: 0;
-        font-size: 24px;
-        font-weight: bold;
-        color: #444;             /* 深灰色文字 */
-        white-space: nowrap;     /* 强制不换行 */
-        z-index: 1000;
-        animation: fadeIn 2s ease-in;  /* 淡入动画 */
-        font-family: "Yimengwuma", sans-serif;
-        /* 渐变文字效果 */
-        background: linear-gradient(90deg, #7dbbff, #80e1a6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    /* 淡入动画定义 */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-5px); }
-        to   { opacity: 1; transform: translateY(0); }
-    }
-    /* 每日一句 */
-    
-    
-    /* 日历卡片 */
-    .calendar-card {
-      position: fixed;
-      top: 130px;
-      right: 250px;   /* 在心情卡片左边 */
-      height: 220px;
-      width: 160px;
-      perspective: 1000px;
-      cursor: pointer;
-      padding: 20px;
-      border-radius: 16px;
-      text-align: center;
-      width: 160px;
-      z-index: 1000;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    .calendar-title {
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 8px;
-      color: #444;
-    }
-    .calendar-date {
-      font-size: 20px;
-      margin-bottom: 5px;
-      color: #555;
-    }
-    .calendar-week {
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #666;
-    }
-    .calendar-countdown {
-      font-size: 16px;
-      color: #888;
-    }
-    .calendar-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-    .calendar-card.flipped .calendar-inner {
-      transform: rotateY(180deg);
-    }
-    /* 正面 & 背面 */
-    .calendar-front, .calendar-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 16px;
-      padding: 20px;
-      box-sizing: border-box;
-      background: #ffffff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      font-family: "Yimengwuma", sans-serif;
-    }
-    .calendar-back {
-      transform: rotateY(180deg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .calendar-update-title {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    .calendar-update-content {
-      font-size: 18px;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    /* 日历卡片 */
-
-
-    /* 📌 今日心情卡片 */
-    .mood-card {
-      position: fixed;
-      display: flex;
-      flex-direction: column;
-      align-items: center;  /* 横向居中 */
-      justify-content: center;  /* 纵向居中（如果需要的话） */
-      right: 30px;
-      top: 130px;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      text-align: center;
-      width: 160px;
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
-    /* 标题 */
-    .mood-title {
-      font-family: "Yimengwuma", sans-serif;
-      font-size: 30px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #444;
-    }
-    @keyframes pop {
-      0%   { transform: scale(1); }
-      50%  { transform: scale(1.3); }
-      100% { transform: scale(1); }
-    }
-    /* 大表情 */
-    .mood-display {
-      font-size: 72px;
-      margin: 10px 0;
-    }
-    /* 只有加上 animate 类时才执行 */
-    .mood-display.animate {
-      animation: pop 0.3s ease;
-    }
-    /* 心情文字 */
-    .mood-text {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 10px;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    /* 心情选择器 */
-    .mood-selector {
-      display: none; /* 默认隐藏 */
-      margin-top: 10px;
-    }
-    .mood-selector span {
-      font-size: 22px;
-      margin: 5px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .mood-selector span:hover {
-      transform: scale(1.3);
-    }
-    /* 鼠标悬停时显示选择器 */
-    .mood-card:hover .mood-selector {
-      display: block;
-    }
-    /* 今日心情卡片 */
-
-
-    /* 底部波形 */
-    .music-visualizer {
-      position: fixed;
-      bottom: 10px;
-      left: 0;
-      width: 100%;
-      height: 120px;   /* 高度可以自己调 */
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 0 2px;
-      z-index: 1000;
-      background: transparent; /* 背景透明 */
-    }
-    /* 底部基准线 */
-    .music-visualizer::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;        /* 横线的粗细 */
-      background: white;  /* 白色横线 */
-      z-index: 3;
-    }
-    .music-visualizer span {
-      flex: 1;                /* 平均分布，铺满页面底部 */
-      margin: 0 1px;          /* 每根柱子之间留点空隙 */
-      bottom: 4px;
-      border-radius: 2px;     /* 柱子圆角 */
-      background: white;      /* 柱子颜色 → 纯白 */
-      height: 20px;
-      animation: bounce 2.5s infinite ease-in-out;
-      transform-origin: bottom; /* 从底部伸缩 */
-      z-index: 2;           /* 确保在横线上方 */
-    }
-    /* 动画：上下波动 */
-    @keyframes bounce {
-      0%, 100% { height: 20px; }
-      50%      { height: 100px; }
-    }
-    /* 底部波形 */
-
-
-    /* 顶部时间天气整体 */
-    .top-info {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 1000;
-      color: #444;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    /* 外层容器：基准点 */
-    .time-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px; /* 时间和右侧内容之间的距离 */
-    }
-    /* 时间：固定左边界 */
-    #time {
-      font-size: 72px;
-      font-weight: bold;
-      text-align: right;
-      min-width: 300px;  /* 预留宽度，保证冒号和秒数不会挤 */
-    }
-    /* 闹钟和倒计时：绝对定位到时间右边 */
-    .alarm-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    #alarm-btn {
-      cursor: pointer;
-      font-size: 28px;
-      transition: transform 0.2s ease;
-    }
-    #alarm-btn:hover {
-      transform: scale(1.2) rotate(10deg);
-    }
-    #alarm-countdown {
-      font-size: 20px;
-      color: #444;
-      font-family: "Yimengwuma", sans-serif;
-    }
-    #weather {
-      font-size: 18px;
-      color: #666;
-      margin-top: 8px;
-    }
-    /* 顶部时间天气 */
-
-
-    /* 歌词搜索输入框 */
-    #lyrics-input {
-      font-family: "Yimengwuma", sans-serif;  /* 输入文字的字体 */
-    }
-    /* placeholder 的字体 */
-    #lyrics-input::placeholder {
-      font-family: "Yimengwuma", sans-serif;
-    }
-    /* 搜索按钮 */
-    #lyrics-btn {
-      font-family: "Yimengwuma", sans-serif;
-    }
-    #lyrics-content {
-      font-family: "ManyuHandwriting", sans-serif;
-      white-space: pre-wrap;
-      word-break: break-word;
-      font-size: 24px;         /* 字体大小可以调 */
-      line-height: 1.8;
-    }
-    /* 默认提示框（白天模式） */
-    .suggestions {
-      position: absolute;
-      top: 35px; 
-      left: 0;
-      width: 100%;
-      max-height: 150px;
-      overflow-y: auto;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      list-style: none;
-      padding: 0;
-      margin: 5px 0 0;
-      display: none;
-      z-index: 2000;
-      font-family: "Yimengwuma", sans-serif;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    .suggestions li {
-      padding: 6px 10px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    #suggestions li:hover {
-      background: #e6f0ff;
-      transform: translateX(4px);
-    }
-    #suggestions {
-      font-family: "Yimengwuma", sans-serif !important;
-      padding: 6px 0;
-    }
-    /* 候选项（白天） */
-    #suggestions li {
-      padding: 8px 12px;
-      margin: 4px 6px;
-      border-radius: 8px;
-      cursor: pointer;
-      background: rgba(245, 245, 245, 0.9);
-      transition: all 0.2s ease;
-    }
-    /* 歌词搜索 */
-
-
-    /* 点击掉落的小音符 */
+/* 点击掉落的小音符 */
     .note {
       position: fixed;
       font-size: 24px;
@@ -566,49 +82,279 @@
     }
     /* 小音符 */
 
+.page{
+  position:relative;
+  z-index:2;                 /* 内容一定在柔光罩上面 */
+  max-width:700px;
+  margin:0 auto;
+  padding:72px 30px 160px;   /* 顶部72给 theme-toggle 让位；左右30固定 */
+  box-sizing:border-box;
+}
 
-    /* 歌词卡片 */
-    .lyrics-card {
-      position: fixed;
-      right: 30px;             /* 靠右 */
-      top: 450px;              /* ✅ 下移，避免挡住心情卡片 */
-      width: 380px; 
-      height: 230px;           /* 固定高度 */
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      padding: 15px;
-      overflow-y: scroll;   /* 允许滚动 */
-      scrollbar-width: none; /* Firefox 隐藏滚动条 */
-      -ms-overflow-style: none; /* IE/Edge 隐藏滚动条 */
-      font-family: "Yimengwuma", sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      display: none;           /* 默认隐藏 */
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
-    .lyrics-card::-webkit-scrollbar {
-      display: none; /* Chrome/Safari 隐藏滚动条 */
-    }
-    /* 歌词卡片 */
-    
+/* 让每个区块自然换行，不重叠 */
+.page > *{
+  position:relative;
+}
 
-    /* 主题切换按钮 */
-    .theme-toggle {
-      position: fixed;
-      top: 60px;     /* 比每日一句往下 40px */
-      right: 30px;   /* 与每日一句对齐 */
-      font-size: 28px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      color: black;  /* 白天黑色月亮 */
-      z-index: 1000;
-    }
-    .theme-toggle:hover {
-        transform: scale(1.2) rotate(10deg);
-    }
-    /* 主题切换按钮 */
+/* =========================
+   ✨ 每日一句（保留渐变/动画）
+========================= */
+
+.daily-quote{
+  text-align:center;
+  font-size:22px;
+  margin:0 0 22px 0;
+  font-family:"Yimengwuma",sans-serif;
+  background:linear-gradient(90deg,#7dbbff,#80e1a6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:fadeIn 2s ease;
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(-5px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* =========================
+   ⏰ 时间天气（居中）
+========================= */
+
+.top-info{
+  text-align:center;
+  margin:0 0 22px 0;
+  font-family:"Yimengwuma",sans-serif;
+}
+#time{
+  font-size:48px;
+  font-weight:700;
+}
+#weather{
+  font-size:16px;
+  margin-top:8px;
+  color:#555;
+}
+
+/* =========================
+   🎵 卡片统一风格（保留你的半透明玻璃感）
+========================= */
+
+.music-player,
+.song-search,
+.lyrics-search,
+.lyrics-card{
+  width:100%;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(6px);
+  border-radius:18px;
+  padding:18px;
+  margin:0 0 24px 0;
+  box-shadow:0 8px 25px rgba(0,0,0,0.12);
+  box-sizing:border-box;
+}
+
+/* =========================
+   🎧 播放器
+========================= */
+
+.music-player audio{ width:100%; }
+
+.music-player button{
+  border:none;
+  background:#f0f0f0;
+  padding:8px 12px;
+  border-radius:10px;
+  margin:6px 4px;
+  font-size:14px;
+  cursor:pointer;
+  transition:0.2s;
+}
+.music-player button:active{ transform:scale(0.95); }
+
+#now-playing{
+  text-align:center;
+  margin-top:10px;
+  font-family:"Yimengwuma",sans-serif;
+  color:#444;
+}
+#sleep-timer-status{
+  text-align:center;
+  font-size:12px;
+  color:#888;
+}
+
+/* =========================
+   🔍 搜歌（✅ suggestions 悬浮覆盖，不挤布局）
+========================= */
+
+.song-search{ position:relative; }
+
+.song-search input{
+  width:100%;
+  height:40px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  padding:0 12px;
+  font-family:"Yimengwuma",sans-serif;
+  font-size:14px;
+  box-sizing:border-box;
+}
+
+#song-search-results{
+  position:absolute;          /* ✅ 悬浮 */
+  top:calc(40px + 10px);      /* 输入框下方 */
+  left:0;
+  right:0;
+  list-style:none;
+  padding:8px 0;
+  margin:0;
+  max-height:220px;
+  overflow:auto;
+  display:none;               /* 由 JS 控制显示/隐藏 */
+  background:rgba(255,255,255,0.98);
+  border:1px solid rgba(0,0,0,0.15);
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.18);
+  z-index:50;                 /* ✅ 压在歌词卡之上 */
+}
+
+#song-search-results li{
+  padding:10px 12px;
+  margin:0 10px 8px 10px;
+  border-radius:12px;
+  background:rgba(240,240,240,0.9);
+  cursor:pointer;
+  transition:0.2s;
+  font-family:"Yimengwuma",sans-serif;
+}
+#song-search-results li:hover{
+  background:#e6f0ff;
+  transform:translateX(2px);
+}
+
+/* =========================
+   🎼 歌词搜索（✅ 不再固定，避免和时间重叠）
+   ✅ suggestions 悬浮覆盖
+========================= */
+
+.lyrics-search{ position:relative; }
+
+.lyrics-search input{
+  width:100%;
+  height:38px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  padding:0 10px;
+  box-sizing:border-box;
+  font-family:"Yimengwuma",sans-serif;
+}
+
+#suggestions{
+  position:absolute;          /* ✅ 悬浮 */
+  top:calc(38px + 10px);
+  left:0;
+  right:0;
+  max-height:200px;
+  overflow:auto;
+  display:none;
+  list-style:none;
+  padding:8px 0;
+  margin:0;
+  background:rgba(255,255,255,0.98);
+  border:1px solid rgba(0,0,0,0.15);
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.18);
+  z-index:60;                 /* ✅ 高于 song-search results */
+  font-family:"Yimengwuma",sans-serif;
+}
+
+#suggestions li{
+  padding:10px 12px;
+  margin:0 10px 8px 10px;
+  border-radius:12px;
+  cursor:pointer;
+  background:rgba(245,245,245,0.92);
+  transition:0.2s;
+}
+#suggestions li:hover{
+  background:#e6f0ff;
+  transform:translateX(2px);
+}
+
+/* =========================
+   📜 歌词卡片
+========================= */
+
+.lyrics-card{
+  height:320px;
+  overflow:auto;
+}
+#lyrics-content{
+  font-family:"ManyuHandwriting",sans-serif;
+  font-size:22px;
+  line-height:1.8;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+/* =========================
+   🌊 底部波形（fixed 保留）
+========================= */
+
+.music-visualizer{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:110px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:0 3px;
+  z-index:5;
+  pointer-events:none;
+}
+.music-visualizer::before{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:4px;
+  background:white;
+}
+.music-visualizer span{
+  flex:1;
+  margin:0 1px;
+  background:white;
+  height:20px;
+  border-radius:2px;
+  animation:bounce 2.5s infinite ease-in-out;
+  transform-origin:bottom;
+}
+@keyframes bounce{
+  0%,100%{height:20px}
+  50%{height:90px}
+}
+
+/* =========================
+   🌙 主题切换按钮（固定浮层，但不挤布局）
+   ✅ 右上角固定，不会把输入框挤出屏幕
+========================= */
+
+.theme-toggle{
+  position:fixed;
+  top:18px;
+  right:18px;
+  font-size:28px;
+  cursor:pointer;
+  transition:transform 0.3s ease;
+  color:black;
+  z-index:2000;
+  user-select:none;
+}
+.theme-toggle:hover{
+  transform:scale(1.2) rotate(10deg);
+}
     
 
     /* 默认白天模式 */
@@ -633,11 +379,7 @@
     body.night #now-playing {
       color: #fff;
     }
-    /* 轮播图外层容器变色 */
-    body.night .slideshow-wrapper {
-      background: rgba(20,20,20,0.9);
-      box-shadow: 0 0 20px rgba(0,255,255,0.4); /* 霓虹感 */
-    }
+    
     /* 每日一句变色 */
     body.night .daily-quote {
         background: linear-gradient(90deg, #0ff, #f0f);
@@ -645,18 +387,7 @@
     }
     /* 播放器变色 */
     body.night .music-player,
-    /* 心情卡片变色 */
-    body.night .mood-card {
-        background: rgba(20,20,20,0.9); /* 深色背景 */
-        box-shadow: 0 0 15px rgba(0,255,255,0.4), 0 0 30px rgba(255,0,255,0.2); /* 霓虹感 */
-        border: 1px solid rgba(0,255,255,0.3);
-    }
-    body.night .mood-title {
-        color: #fff;
-    }
-    body.night .mood-text {
-        color: #fff;
-    }
+    
     /* 搜歌变色 */
     body.night .song-search {
       background: black;
@@ -722,137 +453,28 @@
         0 0 6px rgba(0,255,255,0.4),
         0 0 12px rgba(255,0,255,0.2);
     }
-    /* 日历卡片变色 */
-    body.night .calendar-title {
-      color: #fff;
-    }
-    body.night .calendar-date {
-      color: #fff;
-    }
-    body.night .calendar-week {
-      color: #fff;
-    }
-    body.night .calendar-countdown {
-      color: #fff
-    }
-  /* 日历卡片正反面变色 */
-    body.night .calendar-front,
-    body.night .calendar-back {
-      background: rgba(20, 20, 20, 0.9);   /* 深色卡片 */
-      color: #fff;                         /* 白字 */
-      border: 1px solid rgba(0,255,255,0.3);
-      box-shadow:
-        0 0 15px rgba(0,255,255,0.4),
-        0 0 30px rgba(255,0,255,0.2);
-    }
-    /* 贪吃蛇变色 */
-    body.night .snake-game {
-      background: rgba(20,20,20,0.9);
-      color: #111;
-      border: 1px solid rgba(0,255,255,0.3);
-      box-shadow: 0 0 15px rgba(0,255,255,0.4), 0 0 30px rgba(255,0,255,0.2);
-    }
-    body.night #snakeCanvas {
-      background: #111;         /* 深色背景 */
-      border: 2px solid rgba(0,255,255,0.4);
-    }
-    body.night #snake-score {
-      color: #fff;
-    }
+    
+  
+    
     /* 夜间模式 */
   </style>
 </head>
 
 <body class="day">
-    <!-- 页面顶部时间天气 -->
-    <div class="top-info">
-      <div class="time-wrapper">
-        <div id="time">00:00:00</div>
-        <div class="alarm-wrapper">
-          <span id="alarm-btn">⏰</span>
-          <span id="alarm-countdown"></span>
-        </div>
-      </div>
-      <div id="weather">加载天气中...</div>
-    </div>
-    
-
-  <!-- 弹出框 -->
-  <div id="alarm-modal" style="
-    display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-    background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.2);
-    z-index:2000; text-align:center; font-family:Yimengwuma, sans-serif;">
-    <h3>设置倒计时</h3>
-    <label>小时：
-      <input type="number" id="alarm-hours" min="0" max="23" value="0" style="width:60px;">
-    </label>
-    <br><br>
-    <label>分钟：
-      <input type="number" id="alarm-minutes" min="0" max="59" value="1" style="width:60px;">
-    </label>
-    <br><br>
-    <button id="alarm-confirm">确定</button>
-    <button id="alarm-cancel">取消</button>
-  </div>
-
-
-
-    <!-- 星星容器 -->
-  <div id="star-container"></div>
   <!-- 📌 每日一句 -->
   <div class="daily-quote" id="quote-box">每日一句加载中...</div>
-  <!-- 主题切换按钮 -->
-  <div class="theme-toggle" id="theme-toggle">☪</div>
-  <!-- 📌 今日心情卡片 -->
-  <div class="mood-card">
-    <div class="mood-title">今日心情</div>
-    <div class="mood-display" id="mood-display">😊</div>
-    <div class="mood-text" id="mood-text">开心</div>
-    
-    <!-- 表情选择器（悬停时出现） -->
-    <div class="mood-selector" id="mood-selector">
-      <span data-text="开心">😊</span>
-      <span data-text="喜爱">😍</span>
-      <span data-text="难过">😭</span>
-      <span data-text="生气">😡</span>
-      <span data-text="思考">🤔</span>
-      <span data-text="彩虹">🌈</span>
-    </div>
-  </div>
-  <!-- 日历卡片 -->
-  <div class="calendar-card" id="calendar-card">
-    <div class="calendar-inner">
-      <!-- 正面 -->
-      <div class="calendar-front">
-        <div class="calendar-title">今日</div>
-        <div class="calendar-date" id="calendar-date">2025/08/26</div>
-        <div class="calendar-week" id="calendar-week">星期二</div>
-        <div class="calendar-countdown" id="calendar-countdown">
-          距离周六：4天<br>
-          距离月底：5天
-        </div>
-      </div>
-      <!-- 背面 -->
-      <div class="calendar-back" id="calendar-back">
-        <div class="calendar-update-title">今日更新</div>
-        <div class="calendar-update-content" id="calendar-update">加载中...</div>
+  <!-- 页面顶部时间天气 -->
+  <div class="top-info">
+    <div class="time-wrapper">
+      <div id="time">00:00:00</div>
+      <div class="alarm-wrapper">
+        <span id="alarm-btn">⏰</span>
+        <span id="alarm-countdown"></span>
       </div>
     </div>
+    <div id="weather">加载天气中...</div>
   </div>
-  
-  <!-- 歌词搜索：放在主题切换按钮左边 -->
-  <div class="lyrics-search" style="position: fixed; top: 60px; right: 80px; z-index: 1000;">
-    <input type="text" id="lyrics-input" placeholder="输入歌名搜索歌词" 
-    style="width:200px; height:28px; font-size:16px; padding:3px 8px; border-radius:8px; border:1px solid #ccc;">
-    <ul id="suggestions" style="list-style:none; margin:0; padding:0; position:absolute; top:32px; left:0; width:200px; background:#fff; border:1px solid #ccc; border-radius:6px; display:none; max-height:150px; overflow-y:auto; z-index:2000;"></ul>
-  </div>
-
-  <!-- 歌词卡片 -->
-  <div class="lyrics-card" id="lyrics-card">
-    <div id="lyrics-content"></div>
-  </div>
-  <div class="player-wrapper">
-    <!-- 左上角本地播放器 -->
+      <!-- 左上角本地播放器 -->
 <div class="music-player">
   <audio id="audio-player" controls style="width:300px;">
     浏览器不支持 audio 标签
@@ -882,6 +504,54 @@
   ">
 </div>
 </div>
+  <!-- 🎵 歌曲搜索栏 -->
+<div class="song-search">
+  <input
+    type="text"
+    id="song-search-input"
+    placeholder="搜索 歌名 / 剧名"
+  />
+  <ul id="song-search-results"></ul>
+</div>
+
+  <!-- 弹出框 -->
+  <div id="alarm-modal" style="
+    display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+    background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    z-index:2000; text-align:center; font-family:Yimengwuma, sans-serif;">
+    <h3>设置倒计时</h3>
+    <label>小时：
+      <input type="number" id="alarm-hours" min="0" max="23" value="0" style="width:60px;">
+    </label>
+    <br><br>
+    <label>分钟：
+      <input type="number" id="alarm-minutes" min="0" max="59" value="1" style="width:60px;">
+    </label>
+    <br><br>
+    <button id="alarm-confirm">确定</button>
+    <button id="alarm-cancel">取消</button>
+  </div>
+
+    <!-- 星星容器 -->
+  <div id="star-container"></div>
+  
+  <!-- 主题切换按钮 -->
+  <div class="theme-toggle" id="theme-toggle">☪</div>
+
+  
+  <!-- 歌词搜索：放在主题切换按钮左边 -->
+  <div class="lyrics-search" >
+    <input type="text" id="lyrics-input" placeholder="输入歌名搜索歌词" 
+    style="width:200px; height:28px; font-size:16px; padding:3px 8px; border-radius:8px; border:1px solid #ccc;">
+    <ul id="suggestions" style="list-style:none; margin:0; padding:0; position:absolute; top:32px; left:0; width:200px; background:#fff; border:1px solid #ccc; border-radius:6px; display:none; max-height:150px; overflow-y:auto; z-index:2000;"></ul>
+  </div>
+
+  <!-- 歌词卡片 -->
+  <div class="lyrics-card" id="lyrics-card">
+    <div id="lyrics-content"></div>
+  </div>
+  <div class="player-wrapper">
+
 <!-- ⏱ 定时停止弹窗 -->
 <div id="sleep-timer-modal" style="
   display:none;
@@ -909,135 +579,14 @@
   <button onclick="confirmSleepTimer()">确定</button>
   <button onclick="cancelSleepTimer()">取消</button>
 </div>
-<!-- 🎵 歌曲搜索栏 -->
-<div class="song-search">
-  <input
-    type="text"
-    id="song-search-input"
-    placeholder="搜索 歌名 / 剧名"
-  />
-  <ul id="song-search-results"></ul>
-</div>
-  </div>
+
   
-  <!-- 贪吃蛇小游戏 -->
-  <div class="snake-game">
-    <canvas id="snakeCanvas" width="400" height="200" style="border-radius:12px; background:#fff; display:block;"></canvas>
-    <div class="snake-info">
-      <div id="snake-score" style="margin-top:4px; font-family:Yimengwuma, sans-serif;">得分: 0</div>
-      <button id="restart-btn" onclick="resetGame()">
-        <img src="restart.png" alt="重启" />
-      </button>
-    </div>
-    
-  </div>
-
-  <!-- 中心轮播图 -->
-  <div class="slideshow-wrapper">
-    <div class="slideshow">
-        <img src="https://static.maoercdn.com/dramacovers/202506/20/1f0451862cb7c6854fa868126c655762171907.jpg" class="active" alt="情蛊">
-        <img src="https://static.maoercdn.com/dramacovers/202505/28/eb5af786de85dab3859c958e62f7d133144451.jpg" alt="藏风1">
-        <img src="https://static.maoercdn.com/dramacovers/202507/29/ce73741b8ccf9ba59a357420257071d8174753.jpg" alt="食物链2">
-        <img src="https://static.maoercdn.com/dramacovers/202506/25/948b10e931064b9f3be7cc7a6475be5c201011.png" alt="红白囍2">
-        <img src="https://static.maoercdn.com/dramacovers/202504/02/6161cb7229e98532ef9e0752c2a84c21180515.jpg" alt="黄金笼">
-        <img src="https://static.maoercdn.com/dramacovers/202202/10/5cb1407df91fd39e80110e343e12aca2182346.jpg" alt="秘书2">
-        <img src="https://static.maoercdn.com/dramacovers/202503/15/b10619c07ce34bd9d3f452cce3479844142309.png" alt="标我下">
-        <img src="https://static.maoercdn.com/dramacovers/202508/06/caa9a8a59479e432792dabaed20217b6164628.png" alt="天使之城">
-        <img src="https://static.maoercdn.com/dramacovers/202412/19/a5a35a9e835b5bd96bc9dd8de3006efb125135.jpg" alt="再世权臣2">
-        <img src="https://static.maoercdn.com/dramacovers/202501/24/4975d03de5ba280e4536284020a5017e184502.jpg" alt="梦里人">
-        <img src="https://static.maoercdn.com/dramacovers/202501/24/320fa7e4c242d22801a5e331e767be88161114.png" alt="红白囍1">
-        <img src="https://static.maoercdn.com/dramacovers/202309/13/9a3a2756fcc48f6eac13093b5253d842222031.jpg" alt="烧不尽">
-        <img src="https://static.maoercdn.com/dramacovers/202207/08/90d47b10b4b5c430e9ae1084aa287387161712.png" alt="将门2">
-        <img src="https://static.maoercdn.com/dramacovers/202411/02/7e02110ec93cd37280b3bf27fbc5825d132247.jpg" alt="标我上">
-        <img src="https://static.maoercdn.com/dramacovers/202309/13/78d5296c0ac1227d6740ae41d433fb05091634.jpg" alt="置换凶途2">
-        <img src="https://static.maoercdn.com/dramacovers/202403/08/d25ff3e0ec87973eb788d4e9b9372fc6194616.jpg" alt="直男">
-        <img src="https://static.maoercdn.com/dramacovers/202411/03/720f8535f4c7ceb507c19a8e515b38b4162412.jpg" alt="山河枕">
-        <img src="https://static.maoercdn.com/dramacovers/202405/20/2344aa7964e83567bf6f48d31804faf6154035.jpg" alt="食物链1">
-        <img src="https://static.maoercdn.com/dramacovers/202406/26/86e82a76825758b25b62f20f652cdb7a142838.jpg" alt="cos0">
-        <img src="https://static.maoercdn.com/dramacovers/202402/03/16b22d79005ddf2091e8458f553a2e67203727.jpg" alt="将进酒4">
-        <img src="https://static.maoercdn.com/dramacovers/202402/04/0ba1e6cb962d50369d1fd810784fba44164729.jpg" alt="钟情">
-        <img src="https://static.maoercdn.com/dramacovers/202401/29/2162895f35edcbe4330d59db3d6601e0131715.jpg" alt="薄雾1">
-        <img src="https://static.maoercdn.com/dramacovers/202310/11/552120c083e690e68b457e640a859ba3180531.jpg" alt="放学等我二">
-        <img src="https://static.maoercdn.com/dramacovers/202408/13/08eb9835e07168f6657307ca7bd73390100244.jpg" alt="魔尊">
-        <img src="https://static.maoercdn.com/dramacovers/202312/20/7a64abcaa3ba174ec4ec8a945f6c6583102840.jpg" alt="再世权臣1">
-        <img src="https://static.maoercdn.com/dramacovers/202312/05/03225f51d31eebe186173d622d8bc425161753.jpg" alt="寒武再临1">
-        <img src="https://static.maoercdn.com/dramacovers/202310/17/51c1fa1aabc8e6b8a8e48eebb580c55e193900.jpg" alt="全等分2">
-        <img src="https://static.maoercdn.com/dramacovers/202309/29/937978fe7e35adc3362113c26c075640175217.jpg" alt="有名">
-        <img src="https://static.maoercdn.com/dramacovers/202309/14/ca82a3b16ab0c8f7103378f0c7e92bca173929.jpg" alt="置换凶途1">
-        <img src="https://static.maoercdn.com/dramacovers/202309/13/e9a7a8444aaa4bfe373914921fb20f5a195629.png" alt="三嫁咸鱼1">
-        <img src="https://static.maoercdn.com/dramacovers/202309/14/f82d2a5acf282448943d197fcf0e4dbd191511.jpg" alt="寝室文学">
-        <img src="https://static.maoercdn.com/dramacovers/202307/28/b6370e80a928a2705b7483fe8946f212103807.png" alt="女主男二">
-        <img src="https://static.maoercdn.com/dramacovers/202311/30/803cdd74973dcdcbee5d4ca88020d096130052.png" alt="无双1">
-        <img src="https://static.maoercdn.com/dramacovers/202310/16/2c39bf4ad6b4704eed243b3f62502204172748.jpg" alt="网翻2">
-        <img src="https://static.maoercdn.com/dramacovers/202401/30/40e39159fe7ab227f7ade1f267e86812115240.jpg" alt="诟病">
-        <img src="https://static.maoercdn.com/dramacovers/202311/09/953c0a786fbb97e993d07a45faf841bd153919.png" alt="太子">
-        <img src="https://static.maoercdn.com/dramacovers/202211/10/014b0ae914471476a032f0971843e451153657.png" alt="时光代理人">
-        <img src="https://static.maoercdn.com/dramacovers/202209/07/02e8c3a3ab873bbd25fcc88678f72712213308.jpg" alt="暗火">
-        <img src="https://static.maoercdn.com/dramacovers/202310/17/01b32b7104bb73d4497db9dba419fc97154826.jpg" alt="楚天以南2">
-        <img src="https://static.maoercdn.com/dramacovers/202310/17/d83c38a93295df0344ba440d6c9f2af9154715.jpg" alt="楚天以南1">
-        <img src="https://static.maoercdn.com/dramacovers/202310/30/7f2fe4b37ddfcac8763cd38f0909cd7a132054.jpg" alt="动物园2">
-        <img src="https://static.maoercdn.com/dramacovers/202207/13/f13081d1e5afbc04bbfdd1384ba9b611162603.jpg" alt="laser3">
-        <img src="https://static.maoercdn.com/dramacovers/202309/14/27da5bf1fb32009fdf5f084690eb0a3e120535.jpg" alt="放学等我1">
-        <img src="https://static.maoercdn.com/dramacovers/202507/09/b6b08d29c84826d192fe6c05c15dce39150909.jpg" alt="百万up1">
-        <img src="https://static.maoercdn.com/dramacovers/202311/02/8c05a550af644dc6f8a8beb4b6456ece045318.jpg" alt="小行星1">
-        <img src="https://static.maoercdn.com/dramacovers/202209/06/edc23060493a4f66fd35212f745994fd133739.jpg" alt="明知故犯">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/4f4dd5ddb5259f3b0d7f172fed68eba3184630.jpg" alt="垃圾桶2上">
-        <img src="https://static.maoercdn.com/dramacovers/202310/14/1c6a485ef20fd5715e911af54841a0ee211728.jpg" alt="君有疾否2">
-        <img src="https://static.maoercdn.com/dramacovers/202401/05/bdecd00300a434b1988d41c6280eacd8203138.jpg" alt="人设2">
-        <img src="https://static.maoercdn.com/dramacovers/202310/26/01679ab0e5aafa286085e31614c75d31153134.jpg" alt="营业悖论2">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/415c1bcbf00a1684cd2993019bc97be5184630.png" alt="垃圾桶1">
-        <img src="https://static.maoercdn.com/dramacovers/202309/20/4339c13de736d28afb9d46c0d5c90da0173322.jpg" alt="飞行星球">
-        <img src="https://static.maoercdn.com/dramacovers/202203/25/a487787906a594869ab9488d7f7de853173354.jpg" alt="我为你翻山越岭">
-        <img src="https://static.maoercdn.com/dramacovers/202310/26/f254f7a388aefed9223559b8e0dd2ba5153203.jpg" alt="营业悖论3">
-        <img src="https://static.maoercdn.com/dramacovers/201906/21/e8976ecf34a7b886d6f56f09690c1470165421.jpg" alt="动物园1">
-        <img src="https://static.maoercdn.com/dramacovers/202202/10/f488907c9f5aa8b0ba8ccaa8825ea529190621.jpg" alt="江湖公敌1">
-        <img src="https://static.maoercdn.com/dramacovers/202309/21/a69b7cacdd12f1b749aca4b9f139e6d0164120.jpg" alt="某某2">
-        <img src="https://static.maoercdn.com/dramacovers/202402/21/af266c0f787072b62df65d51258f66c2115846.jpg" alt="判官2">
-        <img src="https://static.maoercdn.com/dramacovers/202310/13/d977784178b012e40b93378125f8e05b150939.jpg" alt="兼职无常1">
-        <img src="https://static.maoercdn.com/dramacovers/202104/24/b370e27c6daefbdab343a6ca7cf18d00102548.jpg" alt="全等分1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/04/accfa53ab22ea73ef827c57baf83f99f125034.jpg" alt="FOG2">
-        <img src="https://static.maoercdn.com/dramacovers/202311/01/4abe77a51e42e870ff7b34c45e5175d7120500.jpg" alt="判官1">
-        <img src="https://static.maoercdn.com/dramacovers/202507/09/a20e12cdcaf906e2e1f5627d2a0acb3a150544.jpg" alt="唇齿之戏">
-        <img src="https://static.maoercdn.com/dramacovers/202106/06/1cd234dacadc86cd849e08fea443d9b8130013.jpg" alt="营业悖论1">
-        <img src="https://static.maoercdn.com/dramacovers/202402/03/c51b0620c700339776c762a277139953203529.jpg" alt="将进酒3">
-        <img src="https://static.maoercdn.com/dramacovers/202310/16/7e93b1710107855f0eaf4a01f3f1c0bc174233.jpg" alt="网翻1">
-        <img src="https://static.maoercdn.com/dramacovers/202309/21/5d9099a6d23b3e54ad14dfa90ddfde2a115713.jpg" alt="千秋1">
-        <img src="https://static.maoercdn.com/dramacovers/202310/26/9c9d404b61f0881463b2830f2483511e182613.png" alt="新时代新地府2">
-        <img src="https://static.maoercdn.com/dramacovers/202310/14/fdd0476cc578bfa62077d2321f51253c211635.jpg" alt="君有疾否1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/fc1f4f765203c8cab093db63ff4b9b14184630.png" alt="犯心3">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/82384370a1f9bfa895dda93613aa2204184630.png" alt="犯心2">
-        <img src="https://static.maoercdn.com/dramacovers/202402/03/6299f3e315300904cbd10a2b9d2c9ec3203458.jpg" alt="将进酒2">
-        <img src="https://static.maoercdn.com/dramacovers/202402/04/b66c06b255d6abdad697a7b70f81f917180334.png" alt="噩梦游戏1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/6967a8a30902822a5453da56d1113562184630.jpg" alt="对家cp2">
-        <img src="https://static.maoercdn.com/dramacovers/202401/04/91b44a20bd15e809e6ebf86b2fbb9623122424.jpg" alt="人设1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/6c504bc7ce87e51967a35a7770841180184630.jpg" alt="土匪攻略1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/30/b380a472f9665185e310e88a46e89458173833.jpg" alt="江湖遍地是奇葩1">
-        <img src="https://static.maoercdn.com/dramacovers/202309/20/27d18f9639c481443d0bf39ac289a858225324.jpg" alt="某某1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/05/3e9f2d6b68eb008e9e18a3cf9c7d9ea4201543.jpg" alt="FOG1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/6fd6568125a2057b3b4d8c62b75e8a2d184630.png" alt="犯心1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/35e4ef3109a4ad56faf90990427e7048184630.jpg" alt="默读5">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/96a3ba3a6ecaf9dc15532062d2e17fbf184630.jpg" alt="对家cp1">
-        <img src="https://static.maoercdn.com/dramacovers/202202/10/afdf03a778b845c2de87ddcad98dd065184826.jpg" alt="高冷作者">
-        <img src="https://static.maoercdn.com/dramacovers/202402/21/f25fad1d87e34d026360c9ee0343c552121710.jpg" alt="破云3">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/71415d0e95cf0ebce1e45cee3337e217184630.jpg" alt="默读4">
-        <img src="https://static.maoercdn.com/dramacovers/202310/25/d6a75dec5dd5269264d58f1294877dc2224205.jpg" alt="默读3">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/10fd03589d818c628515c1904c35a2ba184630.jpg" alt="默读2">
-        <img src="https://static.maoercdn.com/dramacovers/201910/31/f7e6fccfa3ef7251d79588785d5a4861230119.jpg" alt="AWM2">
-        <img src="https://static.maoercdn.com/dramacovers/202310/26/4b862278272a72019f4c560f254962cd200537.jpg" alt="迪奥先生2">
-        <img src="https://static.maoercdn.com/dramacovers/202306/01/27fefac067396941d62db20e1fce4e3a151331.jpg" alt="帝王攻略2">
-        <img src="https://static.maoercdn.com/dramacovers/202309/19/11738723d216e851d9360bd99efaceb8164237.jpg" alt="当万1">
-        <img src="https://static.maoercdn.com/dramacovers/202401/09/f0527e3644fe7075b042566f3e45857a184630.jpg" alt="伪渣2">
-        <img src="https://static.maoercdn.com/dramacovers/202402/21/1b51f5faf8feec5f63dcdf7e08c68259121637.jpg" alt="破云2">
-        <img src="https://static.maoercdn.com/dramacovers/202402/18/3668f291114d3970fad73c1779148b02213759.jpg" alt="青龙图腾">
-        <img src="https://static.maoercdn.com/dramacovers/201906/21/b95f57f46e9689bec0b19c141560a67e171225.jpg" alt="AWM1">
-
-    </div>
-  </div>
+  
   <!-- 页面底部波形条 -->
   <div class="music-visualizer" id="visualizer"></div>
   <script>
-    const slides = document.querySelectorAll(".slideshow img");
-    let order = [...slides.keys()]; // [0,1,2,...]
+    // const slides = document.querySelectorAll(".slideshow img");
+    // let order = [...slides.keys()]; // [0,1,2,...]
 
     // =======================
 // ⏱ 定时停止播放（Sleep Timer）
@@ -1131,20 +680,20 @@ function cancelSleepTimer() {
       return array;
     }
 
-    order = shuffle(order);
+    // order = shuffle(order);
 
     // ✅ 初始随机显示一张
-    let index = 0;
-    slides[order[index]].classList.add("active");
+    // let index = 0;
+    // slides[order[index]].classList.add("active");
 
-    setInterval(() => {
-      slides[order[index]].classList.remove("active");
+    // setInterval(() => {
+    //   slides[order[index]].classList.remove("active");
 
-      index = (index + 1) % slides.length;
-      if (index === 0) order = shuffle(order); // ✅ 播完再洗牌
+    //   index = (index + 1) % slides.length;
+    //   if (index === 0) order = shuffle(order); // ✅ 播完再洗牌
 
-      slides[order[index]].classList.add("active");
-    }, 10000);
+    //   slides[order[index]].classList.add("active");
+    // }, 10000);
 
 
     /* ⭐ 动态生成星星 */
@@ -1224,46 +773,46 @@ function cancelSleepTimer() {
   setInterval(updateQuote, 120000);
 
   /* 每日更新表 */
-  const calendarCard = document.getElementById("calendar-card");
-  calendarCard.addEventListener("click", () => {
-    calendarCard.classList.toggle("flipped");
-  });
-  const updates = {
-    1: "无", // 周一
-    2: "无", // 周二
-    3: "无", // 周三
-    4: "无", // 周四
-    5: "遮天2", // 周五
-    6: "藏青", // 周六
-    0: "不要在垃圾桶里捡男朋友3上"  // 周日
-  };
+  // const calendarCard = document.getElementById("calendar-card");
+  // calendarCard.addEventListener("click", () => {
+  //   calendarCard.classList.toggle("flipped");
+  // });
+  // const updates = {
+  //   1: "无", // 周一
+  //   2: "无", // 周二
+  //   3: "无", // 周三
+  //   4: "无", // 周四
+  //   5: "遮天2", // 周五
+  //   6: "藏青", // 周六
+  //   0: "不要在垃圾桶里捡男朋友3上"  // 周日
+  // };
 
   // 更新日历（日期 & 今日更新）
-  function updateDrama() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const date = now.getDate();
-    const day = now.getDay(); // 0=周日，1=周一...
+//   function updateDrama() {
+//     const now = new Date();
+//     const year = now.getFullYear();
+//     const month = now.getMonth() + 1;
+//     const date = now.getDate();
+//     const day = now.getDay(); // 0=周日，1=周一...
     
 
-    // 更新背面内容
-    document.getElementById("calendar-update").textContent = updates[day];
+//     // 更新背面内容
+//     document.getElementById("calendar-update").textContent = updates[day];
 
-    // 周日提醒
-    if (day === 1) {
-      const reminderKey = `sunday-reminder-${year}-${month}-${date}`; // 每个周一唯一 key
-      if (!localStorage.getItem(reminderKey)) {
-        alert("📌 提醒：今天是周一，记得更新这一周的剧集更新内容！");
-        localStorage.setItem(reminderKey, "shown"); // 标记为已提醒
-      }
-    }
-  }
+//     // 周日提醒
+//     if (day === 1) {
+//       const reminderKey = `sunday-reminder-${year}-${month}-${date}`; // 每个周一唯一 key
+//       if (!localStorage.getItem(reminderKey)) {
+//         alert("📌 提醒：今天是周一，记得更新这一周的剧集更新内容！");
+//         localStorage.setItem(reminderKey, "shown"); // 标记为已提醒
+//       }
+//     }
+//   }
 
-// 页面加载时执行一次
-updateDrama();
-// 每分钟刷新一次
-setInterval(updateDrama, 60000);
+// // 页面加载时执行一次
+// updateDrama();
+// // 每分钟刷新一次
+// setInterval(updateDrama, 60000);
 
 
   // 🎵 点击页面时生成小音符
@@ -1287,22 +836,22 @@ setInterval(updateDrama, 60000);
 
 
     /* 📌 心情选择 */
-    const moodDisplay = document.getElementById("mood-display");
-    const moodText = document.getElementById("mood-text");
-    const moodSelector = document.getElementById("mood-selector");
+    // const moodDisplay = document.getElementById("mood-display");
+    // const moodText = document.getElementById("mood-text");
+    // const moodSelector = document.getElementById("mood-selector");
 
-    moodSelector.querySelectorAll("span").forEach(span => {
-    span.addEventListener("click", () => {
-        moodDisplay.textContent = span.textContent; // 显示表情
-        moodText.textContent = span.getAttribute("data-text"); // 显示文字
-        // 添加动画
-        moodDisplay.classList.add("animate");
-        // 动画结束后移除类
-        moodDisplay.addEventListener("animationend", () => {
-        moodDisplay.classList.remove("animate");
-        }, { once: true });
-    });
-    });
+    // moodSelector.querySelectorAll("span").forEach(span => {
+    // span.addEventListener("click", () => {
+    //     moodDisplay.textContent = span.textContent; // 显示表情
+    //     moodText.textContent = span.getAttribute("data-text"); // 显示文字
+    //     // 添加动画
+    //     moodDisplay.classList.add("animate");
+    //     // 动画结束后移除类
+    //     moodDisplay.addEventListener("animationend", () => {
+    //     moodDisplay.classList.remove("animate");
+    //     }, { once: true });
+    // });
+    // });
 
     /* 时间显示 */
     function updateTime() {
@@ -1422,30 +971,30 @@ document.getElementById("weather").addEventListener("click", locateAndUpdateWeat
 });
 
   // 📅 更新日历内容
-  function updateCalendar() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const date = now.getDate();
-    const day = now.getDay(); // 0=周日，1=周一...
+//   function updateCalendar() {
+//     const now = new Date();
+//     const year = now.getFullYear();
+//     const month = now.getMonth() + 1;
+//     const date = now.getDate();
+//     const day = now.getDay(); // 0=周日，1=周一...
 
-    const weekDays = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+//     const weekDays = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
 
-    // 本周六距离
-    const daysToSaturday = (6 - day + 7) % 7;
+//     // 本周六距离
+//     const daysToSaturday = (6 - day + 7) % 7;
 
-    // 月底距离
-    const lastDate = new Date(year, month, 0).getDate();
-    const daysToMonthEnd = lastDate - date;
+//     // 月底距离
+//     const lastDate = new Date(year, month, 0).getDate();
+//     const daysToMonthEnd = lastDate - date;
 
-    document.getElementById("calendar-date").textContent = `${year}/${month}/${date}`;
-    document.getElementById("calendar-week").textContent = weekDays[day];
-    document.getElementById("calendar-countdown").innerHTML =
-      `距离周六：${daysToSaturday}天<br>距离月底：${daysToMonthEnd}天`;
-  }
+//     document.getElementById("calendar-date").textContent = `${year}/${month}/${date}`;
+//     document.getElementById("calendar-week").textContent = weekDays[day];
+//     document.getElementById("calendar-countdown").innerHTML =
+//       `距离周六：${daysToSaturday}天<br>距离月底：${daysToMonthEnd}天`;
+//   }
 
-  updateCalendar();
-setInterval(updateCalendar, 60000); // 每分钟刷新
+//   updateCalendar();
+// setInterval(updateCalendar, 60000); // 每分钟刷新
 
 
 
@@ -1650,39 +1199,39 @@ function playSongByIndex(index) {
 }
 
   // 贪吃蛇小游戏
-  let score = 0;
-  const gameArea = document.getElementById("game-area");
-  const canvas = document.getElementById("snakeCanvas");
-  const ctx = canvas.getContext("2d");
-  const box = 15; // 每格大小
-  function getRandomStart(exclude) {
-    const maxX = Math.floor(canvas.width / box);
-    const maxY = Math.floor(canvas.height / box);
-    let x, y;
-    do {
-      x = Math.floor(Math.random() * maxX) * box;
-      y = Math.floor(Math.random() * maxY) * box;
-    } while (exclude && exclude.x === x && exclude.y === y); 
-    // ⚡ 避免和食物重叠
-    return { x, y };
-  }
+  // let score = 0;
+  // const gameArea = document.getElementById("game-area");
+  // const canvas = document.getElementById("snakeCanvas");
+  // const ctx = canvas.getContext("2d");
+  // const box = 15; // 每格大小
+  // function getRandomStart(exclude) {
+  //   const maxX = Math.floor(canvas.width / box);
+  //   const maxY = Math.floor(canvas.height / box);
+  //   let x, y;
+  //   do {
+  //     x = Math.floor(Math.random() * maxX) * box;
+  //     y = Math.floor(Math.random() * maxY) * box;
+  //   } while (exclude && exclude.x === x && exclude.y === y); 
+  //   // ⚡ 避免和食物重叠
+  //   return { x, y };
+  // }
   
-  let direction = null;
-  let food = {
-    x: Math.floor(Math.random() * (canvas.width / box)) * box,
-    y: Math.floor(Math.random() * (canvas.height / box)) * box
-  };
-  // 初始化蛇
-  let snake = [getRandomStart(food)];
+  // let direction = null;
+  // let food = {
+  //   x: Math.floor(Math.random() * (canvas.width / box)) * box,
+  //   y: Math.floor(Math.random() * (canvas.height / box)) * box
+  // };
+  // // 初始化蛇
+  // let snake = [getRandomStart(food)];
 
 
-  // 监听方向键
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-    else if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
-    else if (e.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-    else if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
-  });
+  // // 监听方向键
+  // document.addEventListener("keydown", (e) => {
+  //   if (e.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+  //   else if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+  //   else if (e.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+  //   else if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+  // });
 
   function drawSnake() {
     // 🌙 夜间模式 → 黑色背景；白天模式 → 白色背景
@@ -1768,7 +1317,7 @@ function playSongByIndex(index) {
     snake.unshift(head); // 新头放前面
   }
 
-  let game = setInterval(drawSnake, 150);
+  // let game = setInterval(drawSnake, 150);
   function resetGame() {
     direction = null;
     score = 0;
